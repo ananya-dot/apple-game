@@ -34,6 +34,10 @@ class Apple:
 # pygame setup
 pygame.init()
 screen = pygame.display.set_mode((1250, 700))
+
+background = pygame.image.load("apple-game/assets/bg_horizontal.jpeg")
+background = pygame.transform.scale(background, (1250, 700))
+screen.blit(background, (0, 0))
 clock = pygame.time.Clock()
 running = True
 dt = 0
@@ -63,9 +67,11 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+    screen.blit(background, (0, 0))
+
 
     # fill the screen with a color to wipe away anything from last frame
-    screen.fill("purple")
+    # screen.fill("purple")
 
     pygame.draw.circle(screen, "red", player_pos, player_radius)
     # apple.draw()
