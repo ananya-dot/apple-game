@@ -35,7 +35,7 @@ class Apple:
 pygame.init()
 screen = pygame.display.set_mode((1250, 700))
 
-background = pygame.image.load("apple-game/assets/bg_horizontal.jpeg")
+background = pygame.image.load("assets/bg_horizontal.jpeg")
 background = pygame.transform.scale(background, (1250, 700))
 screen.blit(background, (0, 0))
 clock = pygame.time.Clock()
