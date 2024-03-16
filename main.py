@@ -2,21 +2,27 @@ import pygame
 import random
 from apple import Apple
 
+class Player:
 
+    def __init__(self, screen):
+        self.screen = screen
+        self.image = pygame.transform.scale(pygame.image.load('assets/spaceship.png'), (150, 100))
+
+        
 
 
 # pygame setup
 pygame.init()
 screen = pygame.display.set_mode((1250, 700))
 
-background = pygame.image.load("assets/bg_horizontal.jpeg")
+background = pygame.image.load("assets/space_bg.png")
 background = pygame.transform.scale(background, (1250, 700))
 screen.blit(background, (0, 0))
 clock = pygame.time.Clock()
 running = True
 dt = 0
 apple_list = []
-
+player = Player(screen)
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 player_radius = 40
 apple = Apple(screen, "red")
@@ -51,12 +57,12 @@ while running:
             running = False
     screen.blit(background, (0, 0))
     draw_score_label(screen, score, 70, 50)
-
+    screen.blit(player.image, player_pos)
 
     # fill the screen with a color to wipe away anything from last frame
     # screen.fill("purple")
 
-    pygame.draw.circle(screen, "red", player_pos, player_radius)
+    # pygame.draw.circle(screen, "red", player_pos, player_radius)
     # apple.draw()
 
     for one_apple in apple_list:
@@ -68,7 +74,9 @@ while running:
             else:
                 score += 1
             apple_list.remove(one_apple)
-            print(score)
+            # print(score)
+
+    # handling keys
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
         player_pos.y -= 300 * dt

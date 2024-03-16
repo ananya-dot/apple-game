@@ -14,9 +14,9 @@ class Apple:
         self.acceleration_y = GRAVITY
 
         if self.color == 'red':
-            self.image = pygame.transform.scale(pygame.image.load('assets/red_apple.png'), (70, 50))
+            self.image = pygame.transform.scale(pygame.image.load('assets/Diamond.png'), (70, 50))
         elif self.color == 'black':
-            self.image = pygame.transform.scale(pygame.image.load('assets/black_apple.png'), (50, 50))
+            self.image = pygame.transform.scale(pygame.image.load('assets/asteroid.png'), (50, 50))
     def draw(self):
         # self.color = random.choice(["red", "black"])
         self.screen.blit(self.image, (self.x, self.y))
