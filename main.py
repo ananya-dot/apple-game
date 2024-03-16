@@ -64,7 +64,7 @@ while running:
         one_apple.fall()
         if check_collision(one_apple, player_pos, player_radius):
             if one_apple.color == "black":
-                score -= 5
+                score -= 2
             else:
                 score += 1
             apple_list.remove(one_apple)
