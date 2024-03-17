@@ -29,7 +29,15 @@ apple = Apple(screen, "red")
 apple_generation_timer = 0
 
 score = 0
-
+def game_over(screen):
+    font = pygame.font.SysFont(None, 100)
+    text = font.render("Game Over", True, (255, 0, 0))
+    text_rect = text.get_rect(center=(screen.get_width() // 2, screen.get_height() // 2))
+    screen.blit(text, text_rect)
+    pygame.display.flip()
+    pygame.time.wait(2000)  # Display the message for 2 seconds
+    pygame.quit()
+    quit()
 def draw_score_label(screen, score, x, y):
     font = pygame.freetype.SysFont(None, 30)
     score_text = f"Score: {score}"
@@ -38,7 +46,6 @@ def draw_score_label(screen, score, x, y):
     font.render_to(screen, score_rect, score_text, (255, 255, 255))
 def check_collision(apple, player_pos, player_radius):
     distance = ((apple.x - player_pos.x) ** 2 +  (apple.y - player_pos.y) ** 2) ** 0.5
-
     if distance <= apple.radius + player_radius:
         return True
     return False
@@ -58,6 +65,9 @@ while running:
     screen.blit(background, (0, 0))
     draw_score_label(screen, score, 70, 50)
     screen.blit(player.image, player_pos)
+
+    if score < 0:
+        game_over(screen)
 
     # fill the screen with a color to wipe away anything from last frame
     # screen.fill("purple")
